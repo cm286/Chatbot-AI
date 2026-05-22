@@ -28,8 +28,8 @@ export function ChatMessage({ role, content }: ChatMessageProps) {
   // Sanitize content: remove bold markers and convert separator lines (---, ***, ___) into empty lines
   const sanitizedContent = content
     // remove bold markers like **text** and __text__
-    .replace(/\*\*(.*?)\*\*/gs, "$1")
-    .replace(/__([^_]+)__/gs, "$1")
+    .replace(/\*\*([\s\S]*?)\*\*/g, "$1")
+    .replace(/__([\s\S]*?)__/g, "$1")
     // split into lines and clear lines that are only separators (---, ***, ___, or repeated -_* chars)
     .split("\n")
     .map((line) => (/^\s*([-*_]){3,}\s*$/.test(line) ? "" : line))
