@@ -137,7 +137,13 @@ export default function Home() {
       }
 
       if (data.result && data.result.content) {
-        const assistantMessages = [...newMessages, { role: "assistant", content: data.result.content }];
+        const assistantMessages: Message[] = [
+  ...newMessages,
+  {
+    role: "assistant",
+    content: data.result.content,
+  },
+];
         setMessages(assistantMessages);
         persistCurrentSession(sessionId, assistantMessages);
       } else {
